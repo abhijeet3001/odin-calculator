@@ -38,3 +38,8 @@
   height: 55px;
   width:67px;
 }
+.btn{
+  border: 2px solid ;
+  border-radius: 5px;
+  font-size: larger;
+}
