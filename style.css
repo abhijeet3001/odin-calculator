@@ -1,3 +1,24 @@
-.body{
-    margin: 0;
+.body {
+  margin: 0;
+}
+.calculator {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 350px;
+  height: 550px;
+  border: 3px solid black;
+  padding: 15px;
+  align-items: center;
+  justify-content: space-around;
+}
+.screen {
+  height: 100px;
+  width: 95%;
+  border: 3px solid black;
+}
+.buttons {
+    height: 350px;
+    width: 95%;
+  border: 3px solid black;
 }
