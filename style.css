@@ -18,7 +18,23 @@
   border: 3px solid black;
 }
 .buttons {
-    height: 350px;
-    width: 95%;
-  border: 3px solid black;
+  height: 350px;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+}
+.top, .bottom{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 10px;
+
+}
+.top .btn{
+  height: 55px;
+  width: 144px;
+}
+.bottom .btn{
+  height: 55px;
+  width:67px;
 }
