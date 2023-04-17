@@ -1,8 +1,9 @@
 let firstNo = "";
 let secondNo = "";
 let operator;
-const buttons = document.querySelectorAll(".btn");
 let result;
+const buttons = document.querySelectorAll(".btn");
+const displayScreen = document.querySelector(".screen");
 
 function add(a, b) {
   return a + b;
@@ -29,8 +30,8 @@ function isOperator(ch) {
 function inputNumbers(num) {
   if (!operator) {
     if (result) result = undefined;
-    firstNo += num;
-  } else secondNo += num;
+    (firstNo += num), (displayScreen.textContent = firstNo);
+  } else (secondNo += num), (displayScreen.textContent = secondNo);
 }
 function clickButton(e) {
   let value = e.target.value;
@@ -41,6 +42,7 @@ function clickButton(e) {
   } else if (value === "=") {
     if (secondNo) result = operate(firstNo, operator, secondNo);
     else result = firstNo;
+    displayScreen.textContent = result;
     operator = undefined;
     firstNo = "";
     secondNo = "";
@@ -53,7 +55,7 @@ function clickButton(e) {
       firstNo = result;
       secondNo = "";
       operator = value;
-      console.log(result);
+      displayScreen.textContent = result;
     }
   } else inputNumbers(value);
   console.log(`result is ${result}`);
