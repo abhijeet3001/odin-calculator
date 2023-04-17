@@ -53,11 +53,16 @@ function useOperator(value) {
     displayScreen.textContent = result;
   }
 }
+function clearDisplay() {
+  displayScreen.textContent = "";
+  operator = undefined;
+  firstNo = "";
+  secondNo = "";
+}
 function clickButton(e) {
   let value = e.target.value;
-  if (value === "clear") {
-    // run Function to clear display
-  } else if (value === "delete") {
+  if (value === "clear") clearDisplay();
+  else if (value === "delete") {
     // run Function to delete last value
   } else if (value === "=") doEquals();
   else if (isOperator(value)) useOperator(value);
