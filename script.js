@@ -2,6 +2,7 @@ let firstNo = "";
 let secondNo = "";
 let operator;
 const buttons = document.querySelectorAll(".btn");
+let result;
 
 function add(a, b) {
   return a + b;
@@ -22,27 +23,39 @@ function operate(first, operator, second) {
   if (operator === "*") return multiply(first, second);
   if (operator === "/") return divide(first, second);
 }
-function isOperator(ch){
-  return ch=="+"||ch=="-"||ch=="*"||ch=="/"||ch=="=";
+function isOperator(ch) {
+  return ch == "+" || ch == "-" || ch == "*" || ch == "/" || ch == "=";
 }
-function inputNumbers(num){
-  if(!operator){
-    firstNo+=num;
-  }
-  else secondNo+=num;
+function inputNumbers(num) {
+  if (!operator) {
+    if (result) result = undefined;
+    firstNo += num;
+  } else secondNo += num;
 }
 function clickButton(e) {
   let value = e.target.value;
-  if(value==="clear"){
+  if (value === "clear") {
     // run Function to clear display
-  }
-  else if(value==='delete'){
+  } else if (value === "delete") {
     // run Function to delete last value
-  }
-  else if(isOperator(value)){
-    // run Function to check operator is present or not
-    operator=value;
-  }
-  else inputNumbers(value);
+  } else if (value === "=") {
+    if (secondNo) result = operate(firstNo, operator, secondNo);
+    else result = firstNo;
+    operator = undefined;
+    firstNo = "";
+    secondNo = "";
+  } else if (isOperator(value)) {
+    if (!operator) {
+      operator = value;
+      if (result) firstNo = result;
+    } else {
+      result = operate(firstNo, operator, secondNo);
+      firstNo = result;
+      secondNo = "";
+      operator = value;
+      console.log(result);
+    }
+  } else inputNumbers(value);
+  console.log(`result is ${result}`);
 }
 buttons.forEach((button) => button.addEventListener("click", clickButton));
