@@ -33,31 +33,35 @@ function inputNumbers(num) {
     (firstNo += num), (displayScreen.textContent = firstNo);
   } else (secondNo += num), (displayScreen.textContent = secondNo);
 }
+function doEquals() {
+  if (secondNo) result = operate(firstNo, operator, secondNo);
+  else result = firstNo;
+  displayScreen.textContent = result;
+  operator = undefined;
+  firstNo = "";
+  secondNo = "";
+}
+function useOperator(value) {
+  if (!operator) {
+    operator = value;
+    if (result) firstNo = result;
+  } else {
+    result = operate(firstNo, operator, secondNo);
+    firstNo = result;
+    secondNo = "";
+    operator = value;
+    displayScreen.textContent = result;
+  }
+}
 function clickButton(e) {
   let value = e.target.value;
   if (value === "clear") {
     // run Function to clear display
   } else if (value === "delete") {
     // run Function to delete last value
-  } else if (value === "=") {
-    if (secondNo) result = operate(firstNo, operator, secondNo);
-    else result = firstNo;
-    displayScreen.textContent = result;
-    operator = undefined;
-    firstNo = "";
-    secondNo = "";
-  } else if (isOperator(value)) {
-    if (!operator) {
-      operator = value;
-      if (result) firstNo = result;
-    } else {
-      result = operate(firstNo, operator, secondNo);
-      firstNo = result;
-      secondNo = "";
-      operator = value;
-      displayScreen.textContent = result;
-    }
-  } else inputNumbers(value);
+  } else if (value === "=") doEquals();
+  else if (isOperator(value)) useOperator(value);
+  else inputNumbers(value);
   console.log(`result is ${result}`);
 }
 buttons.forEach((button) => button.addEventListener("click", clickButton));
