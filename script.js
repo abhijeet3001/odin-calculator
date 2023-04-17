@@ -43,7 +43,7 @@ function doEquals() {
   }
 }
 function useOperator(value) {
-  if (!operator) {
+  if (!secondNo) {
     operator = value;
     if (result) firstNo = result;
   } else {
