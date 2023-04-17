@@ -34,12 +34,13 @@ function inputNumbers(num) {
   } else (secondNo += num), (displayScreen.textContent = secondNo);
 }
 function doEquals() {
-  if (secondNo) result = operate(firstNo, operator, secondNo);
-  else result = firstNo;
-  displayScreen.textContent = result;
-  operator = undefined;
-  firstNo = "";
-  secondNo = "";
+  if (secondNo) {
+    result = operate(firstNo, operator, secondNo);
+    operator = undefined;
+    firstNo = "";
+    secondNo = "";
+    displayScreen.textContent = result;
+  }
 }
 function useOperator(value) {
   if (!operator) {
@@ -68,5 +69,6 @@ function clickButton(e) {
   else if (isOperator(value)) useOperator(value);
   else inputNumbers(value);
   console.log(`result is ${result}`);
+  console.log(`${firstNo} ${operator} ${secondNo}`);
 }
 buttons.forEach((button) => button.addEventListener("click", clickButton));
