@@ -60,19 +60,18 @@ function clearDisplay() {
   firstNo = "";
   secondNo = "";
 }
-function deleteNo(){
-  if(!operator) firstNo=firstNo.slice(0,-1), (displayScreen.textContent = firstNo);
-  else secondNo=secondNo.slice(0,-1), (displayScreen.textContent = secondNo);
+function deleteNo() {
+  if (!operator)
+    (firstNo = firstNo.slice(0, -1)), (displayScreen.textContent = firstNo);
+  else
+    (secondNo = secondNo.slice(0, -1)), (displayScreen.textContent = secondNo);
 }
 function clickButton(e) {
   let value = e.target.value;
   if (value === "clear") clearDisplay();
-  else if (value === "delete") {
-    deleteNo();
-  } else if (value === "=") doEquals();
+  else if (value === "delete") deleteNo();
+  else if (value === "=") doEquals();
   else if (isOperator(value)) useOperator(value);
   else inputNumbers(value);
-  console.log(`result is ${result}`);
-  console.log(`${firstNo} ${operator} ${secondNo}`);
 }
 buttons.forEach((button) => button.addEventListener("click", clickButton));
