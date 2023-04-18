@@ -60,11 +60,15 @@ function clearDisplay() {
   firstNo = "";
   secondNo = "";
 }
+function deleteNo(){
+  if(!operator) firstNo=firstNo.slice(0,-1), (displayScreen.textContent = firstNo);
+  else secondNo=secondNo.slice(0,-1), (displayScreen.textContent = secondNo);
+}
 function clickButton(e) {
   let value = e.target.value;
   if (value === "clear") clearDisplay();
   else if (value === "delete") {
-    // run Function to delete last value
+    deleteNo();
   } else if (value === "=") doEquals();
   else if (isOperator(value)) useOperator(value);
   else inputNumbers(value);
