@@ -19,6 +19,8 @@ function divide(a, b) {
 }
 
 function operate(first, operator, second) {
+  first=parseFloat(first);
+  second=parseFloat(second);
   if (operator === "+") return add(first, second);
   if (operator === "-") return subtract(first, second);
   if (operator === "*") return multiply(first, second);
