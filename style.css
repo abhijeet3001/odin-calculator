@@ -12,13 +12,15 @@ body {
   flex-direction: column;
   box-sizing: border-box;
   width: 350px;
-  height: 550px;
+  height: 530px;
   border: 3px solid black;
   border-radius: 10px;
   padding: 15px;
+  padding-top: 35px;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   background-color: #40476d;
+  gap: 40px;
 }
 .screen {
   height: 100px;
@@ -70,6 +72,8 @@ body {
 }
 .btn:hover {
   cursor: pointer;
+  filter: brightness(150%);
+  transition: 0.1s ease-in;
 }
 .btn:active {
   transform: scale(0.95);
