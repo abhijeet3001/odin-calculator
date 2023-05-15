@@ -3,7 +3,8 @@ let secondNo = "";
 let operator;
 let result;
 const buttons = document.querySelectorAll(".btn");
-const displayScreen = document.querySelector(".screen");
+const displayScreen = document.querySelector(".bottom-screen");
+const displayScreenTop = document.querySelector(".top-screen");
 
 function add(a, b) {
   return a + b;
@@ -59,6 +60,7 @@ function useOperator(value) {
 }
 function clearDisplay() {
   displayScreen.textContent = "";
+  displayScreenTop.textContent = "";
   operator = undefined;
   firstNo = "";
   secondNo = "";
@@ -69,6 +71,10 @@ function deleteNo() {
   else
     (secondNo = secondNo.slice(0, -1)), (displayScreen.textContent = secondNo);
 }
+function showTopDisplay(){
+  if(operator!==undefined)
+    displayScreenTop.textContent = `${firstNo} ${operator}`
+}
 function clickButton(e) {
   let value = e.target.value;
   if (value === "clear") clearDisplay();
@@ -76,5 +82,6 @@ function clickButton(e) {
   else if (value === "=") doEquals();
   else if (isOperator(value)) useOperator(value);
   else inputNumbers(value);
+  showTopDisplay();
 }
 buttons.forEach((button) => button.addEventListener("click", clickButton));
