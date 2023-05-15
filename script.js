@@ -16,13 +16,13 @@ function multiply(a, b) {
   return a * b;
 }
 function divide(a, b) {
-  if(b===0) return "Error"
+  if (b === 0) return "Error";
   return a / b;
 }
 
 function operate(first, operator, second) {
-  first=parseFloat(first);
-  second=parseFloat(second);
+  first = parseFloat(first);
+  second = parseFloat(second);
   if (operator === "+") return add(first, second);
   if (operator === "-") return subtract(first, second);
   if (operator === "*") return multiply(first, second);
@@ -33,6 +33,7 @@ function isOperator(ch) {
 }
 function inputNumbers(num) {
   if (!operator) {
+    displayScreenTop.textContent = "";
     if (result) result = undefined;
     (firstNo += num), (displayScreen.textContent = firstNo);
   } else (secondNo += num), (displayScreen.textContent = secondNo);
@@ -40,16 +41,18 @@ function inputNumbers(num) {
 function doEquals() {
   if (secondNo) {
     result = operate(firstNo, operator, secondNo);
+    displayScreenTop.textContent = `${firstNo} ${operator} ${secondNo}=`;
+    displayScreen.textContent = result;
     operator = undefined;
     firstNo = "";
     secondNo = "";
-    displayScreen.textContent = result;
   }
 }
 function useOperator(value) {
   if (!secondNo) {
     operator = value;
     if (result) firstNo = result;
+    displayScreen.textContent = "";
   } else {
     result = operate(firstNo, operator, secondNo);
     firstNo = result;
@@ -71,9 +74,9 @@ function deleteNo() {
   else
     (secondNo = secondNo.slice(0, -1)), (displayScreen.textContent = secondNo);
 }
-function showTopDisplay(){
-  if(operator!==undefined)
-    displayScreenTop.textContent = `${firstNo} ${operator}`
+function showTopDisplay() {
+  if (operator !== undefined)
+    displayScreenTop.textContent = `${firstNo} ${operator}`;
 }
 function clickButton(e) {
   let value = e.target.value;

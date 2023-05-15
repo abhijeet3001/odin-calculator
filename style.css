@@ -40,6 +40,7 @@ body {
 .top-screen{
   font-size: 1rem;
   color: #40476d;
+  letter-spacing: -2px;
 }
 .buttons {
   height: 350px;
@@ -66,7 +67,6 @@ body {
   border: 2px solid black;
   border-radius: 5px;
   font-size: larger;
-  /* background-color: #8d99ae; */
   background-color: #345830;
   color: white;
 }
