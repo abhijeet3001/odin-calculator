@@ -2,6 +2,7 @@ let firstNo = "";
 let secondNo = "";
 let operator;
 let result;
+let isFloat;
 const buttons = document.querySelectorAll(".btn");
 const displayScreen = document.querySelector(".bottom-screen");
 const displayScreenTop = document.querySelector(".top-screen");
@@ -78,11 +79,22 @@ function showTopDisplay() {
   if (operator !== undefined)
     displayScreenTop.textContent = `${firstNo} ${operator}`;
 }
+function addDecimal(num) {
+  if (num === "" || num == parseInt(num)) return ".";
+  return "";
+}
+
+function isDotPresent() {
+  if (!operator) firstNo += addDecimal(firstNo);
+  else secondNo += addDecimal(secondNo);
+}
+
 function clickButton(e) {
   let value = e.target.value;
   if (value === "clear") clearDisplay();
   else if (value === "delete") deleteNo();
   else if (value === "=") doEquals();
+  else if (value === ".") isDotPresent();
   else if (isOperator(value)) useOperator(value);
   else inputNumbers(value);
   showTopDisplay();
