@@ -112,3 +112,19 @@ function clickButton(e) {
   showTopDisplay();
 }
 buttons.forEach((button) => button.addEventListener("click", clickButton));
+
+// Input from Keyboard 
+function handleKeyInput(e){
+  let value=e.key;
+  if (value === "Escape") clearDisplay();
+  else if (value === "Backspace") deleteNo();
+  else if (value === "=") doEquals();
+  else if (value === ".") isDotPresent();
+  else if (isOperator(value)) useOperator(value);
+  else if(value>=0 && value<=9) inputNumbers(value);
+  showTopDisplay();
+  e.preventDefault();
+  return;
+}
+
+window.addEventListener('keydown',handleKeyInput);
