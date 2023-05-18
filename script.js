@@ -8,19 +8,22 @@ const displayScreen = document.querySelector(".bottom-screen");
 const displayScreenTop = document.querySelector(".top-screen");
 
 function add(a, b) {
-  return a + b;
+  return roundResult(a + b);
 }
 function subtract(a, b) {
-  return a - b;
+  return roundResult(a - b);
 }
 function multiply(a, b) {
-  return a * b;
+  return roundResult(a * b);
 }
 function divide(a, b) {
   if (b === 0) return "Error";
-  return a / b;
+  return roundResult(a / b);
 }
 
+function roundResult(number) {
+  return Math.round(number * 1000) / 1000
+}
 function operate(first, operator, second) {
   first = parseFloat(first);
   second = parseFloat(second);
