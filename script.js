@@ -71,14 +71,24 @@ function clearDisplay() {
 }
 function deleteNo() {
   if (!operator)
-    (firstNo = firstNo.slice(0, -1)), (displayScreen.textContent = firstNo);
+    (firstNo = firstNo.slice(0, -1))
+    // , (displayScreen.textContent = firstNo);
   else
-    (secondNo = secondNo.slice(0, -1)), (displayScreen.textContent = secondNo);
+    (secondNo = secondNo.slice(0, -1))
+    // , (displayScreen.textContent = secondNo);
+    updateBottomDisplay();
 }
+
 function showTopDisplay() {
   if (operator !== undefined)
     displayScreenTop.textContent = `${firstNo} ${operator}`;
 }
+
+function updateBottomDisplay() {
+  if (!operator) displayScreen.textContent = firstNo;
+  else displayScreen.textContent = secondNo;
+}
+
 function addDecimal(num) {
   if (num === "" || num == parseInt(num)) return ".";
   return "";
@@ -87,6 +97,7 @@ function addDecimal(num) {
 function isDotPresent() {
   if (!operator) firstNo += addDecimal(firstNo);
   else secondNo += addDecimal(secondNo);
+  updateBottomDisplay();
 }
 
 function clickButton(e) {
