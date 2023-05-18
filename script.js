@@ -2,7 +2,6 @@ let firstNo = "";
 let secondNo = "";
 let operator;
 let result;
-let isFloat;
 const buttons = document.querySelectorAll(".btn");
 const displayScreen = document.querySelector(".bottom-screen");
 const displayScreenTop = document.querySelector(".top-screen");
@@ -17,7 +16,7 @@ function multiply(a, b) {
   return roundResult(a * b);
 }
 function divide(a, b) {
-  if (b === 0) return "Error";
+  if (b === 0) return "Can`t divide by 0! ";
   return roundResult(a / b);
 }
 
@@ -39,8 +38,9 @@ function inputNumbers(num) {
   if (!operator) {
     displayScreenTop.textContent = "";
     if (result) result = undefined;
-    (firstNo += num), (displayScreen.textContent = firstNo);
-  } else (secondNo += num), (displayScreen.textContent = secondNo);
+    (firstNo += num)
+  } else (secondNo += num)
+  updateBottomDisplay()
 }
 function doEquals() {
   if (secondNo) {
@@ -53,7 +53,8 @@ function doEquals() {
   }
 }
 function useOperator(value) {
-  if (!secondNo) {
+  if(!firstNo && !result) return;
+  else if (!secondNo) {
     operator = value;
     if (result) firstNo = result;
     displayScreen.textContent = "";
@@ -75,10 +76,8 @@ function clearDisplay() {
 function deleteNo() {
   if (!operator)
     (firstNo = firstNo.slice(0, -1))
-    // , (displayScreen.textContent = firstNo);
   else
     (secondNo = secondNo.slice(0, -1))
-    // , (displayScreen.textContent = secondNo);
     updateBottomDisplay();
 }
 
@@ -88,8 +87,7 @@ function showTopDisplay() {
 }
 
 function updateBottomDisplay() {
-  if (!operator) displayScreen.textContent = firstNo;
-  else displayScreen.textContent = secondNo;
+  displayScreen.textContent = !operator ? firstNo: secondNo;
 }
 
 function addDecimal(num) {
